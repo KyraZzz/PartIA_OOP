@@ -23,12 +23,13 @@ in the fibonacci program, if we receive a number that is smaller than 1, and we 
 such as null pointer exception.
 
 ## Q4. (W) Compare and contrast a typical functional language and a typical imperative language.
-* 
+* For instance, we pick `OCaml`
 
 ## Q5. Write Java code to test whether your Java environment performs tail-recursion optimisations or not.
 
 ## Q6. Write a static function lowestCommon that takes two long arguments and returns the position of the first set bit in common, where position 0 is the LSB. If there is no common bit, the function should return -1. For example lowestCommon(14,25) would be 3. Your solution should use at least one break statement.
 
+## 
 
 
 
