@@ -102,10 +102,7 @@ decide what they should do. Provide appropriate tests using JUnit.
 (b) (b) The BinaryTreeNode class can be reused for other solutions. Create a class FunctionalArray that
     uses BinaryTreeNode to create a functional array of ints. Your class should have a constructor that creates a tree of a given size (passed as an argument); a void set(int index, int value) method; and a int get(int index) method. 
     You should make the functional array zero-indexed to match java’s normal arrays (i.e. the first element has index 0). Requests for indices outside the limits should result in an exception.
-
-```java
-// TODO
-```
+[Question 9 code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question9)
 
 ### Q10. Explain why this code prints 0 rather than 7.
 ``` java
