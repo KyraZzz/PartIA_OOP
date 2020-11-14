@@ -1,6 +1,9 @@
 ## Q1. (W) Set up SSH, git, and IDE and your account on Chime
 ## Q2. (W) Complete the Fibonacci task on Chime
-[Fibonacci Task on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/fibonacci/code})
+[Fibonacci Task part 1 on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/fibonacci/code/30ae6e6fbdff17cd9f249c24716936d000ff786f)
+
+[Fibonacci Task part 2 on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/fibonacci/code/afb144b3b85da1ff243f9827c0d0633b633a2126)
+
 #### (a) Why would one argue that the provided tests for Fibonacci are not sufficient?
 * If the tests have not go through all the branches in the codes, then it is not sufficient 
 to say the code is robust because without testing all the branches, one of them might have
@@ -32,6 +35,7 @@ such as null pointer exception.
 ## Q5. Write Java code to test whether your Java environment performs tail-recursion optimisations or not.
 * No, java does not perform tail-recursion optimisations.
 * Because in the `Factorial` functions, the run time of the tail-recursion version is similar or even slower than the version without tail-recursion.
+
 [Question 5 code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question5)
 
 ## Q6. Write a static function lowestCommon that takes two long arguments and returns the position of the first set bit in common, where position 0 is the LSB. If there is no common bit, the function should return -1. For example lowestCommon(14,25) would be 3. Your solution should use at least one break statement.
@@ -54,7 +58,9 @@ Computer c = null;
 > A reference is an entity which provides a way to access object of its type. An object is an entity which provides a way to access the members of it's class or type
 
 ## Q8. You met the idea of linked lists in FoCS. Complete the first part of the ‘Classic collections’ task on Chime.
+
 [Classic Collections Part 1](https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/07176eecc39ccc93ca73ac7b300d987e5a134e68)
+
 * (a) How is an empty list represented?
     * When we set both the head and the tail of the list as null.
 * (b) How does the toString method implement the list traversal?
@@ -102,6 +108,7 @@ decide what they should do. Provide appropriate tests using JUnit.
 (b) (b) The BinaryTreeNode class can be reused for other solutions. Create a class FunctionalArray that
     uses BinaryTreeNode to create a functional array of ints. Your class should have a constructor that creates a tree of a given size (passed as an argument); a void set(int index, int value) method; and a int get(int index) method. 
     You should make the functional array zero-indexed to match java’s normal arrays (i.e. the first element has index 0). Requests for indices outside the limits should result in an exception.
+
 [Question 9 code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question9)
 
 ### Q10. Explain why this code prints 0 rather than 7.
@@ -138,6 +145,7 @@ public class Test {
 [Part 1 Code](https://chime.cl.cam.ac.uk/page/repos/yz709/matrices/code/f94c6b7a77f5bfed6ecded3ebbd8d8ca7b5c4efd)
 
 [Part 2 Code](https://chime.cl.cam.ac.uk/page/repos/yz709/matrices/code/1f02812fdab58f594d8c9acbb831a76902a9c016)
+
 * (a) Why is it necessary for the assertions to have the form assertThat(actual).isWithin(tolerance).of(expected);?
     * Because we are dealing with `double` which has a precision limit and when we manipulate the two matrices, for instance, one of the element in the matrix is 7.00000000000001 and the corresponding element in the other matrix is 1.0, when added together, this gives us 8.0 while the correct answer is 8.0000000000001.
 * (b) Why have the static factory methods been put in the Shapes class rather than Matrix?
@@ -150,6 +158,7 @@ use Generics). At a minimum your class should support addition of two vectors; s
 normalisation and magnitude.
 
 [Code for Part(a) and Part(c) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question14)
+
 * (b) What changes would be needed to make it immutable?
     * Set the fields of the matrix as final so that their values can only be assigned only once.
     * Make all the fields as private so that we do not allow direct access.
@@ -174,6 +183,7 @@ versions.
     * Type erasure is applied at compile time and if we instantiate the objects as generics then its type will be erased at compile time. 
 
 ### Q16. (W) Complete the second part of the ‘Classic collections’ task (using generics) on Chime
+
 [Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/0d01ad3eb067e1ffc4b823079dcb3098cb9f4bb3)
 
 [Reference on Generics and static inner class and methods](https://www.oreilly.com/library/view/java-generics-and/0596527756/ch04.html)
@@ -195,6 +205,7 @@ algorithm. You will find that you are unable to create new arrays of type T i.e.
 instead. Bearing in mind the concept of type-erasure why does this fail to compile? Why does
 Object[] or ArrayList〈T〉 work?
 * Because during compile time, the compiler applies type erasure which gets rid of the <T> type.
+
 [Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/sorting/code)
 
 ### Q18. Research the notion of wildcards in Java Generics. Using examples, explain the problem they solve.
