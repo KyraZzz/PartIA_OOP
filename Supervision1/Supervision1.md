@@ -23,15 +23,16 @@ in the fibonacci program, if we receive a number that is smaller than 1, and we 
 such as null pointer exception.
 
 ## Q4. (W) Compare and contrast a typical functional language and a typical imperative language.
-* For instance, we pick `OCaml`
-```java
-// TODO
-```
+* For instance, we pick `OCaml` and `Java`.
+* Programmer Focus: In `OCaml`, we care about what to do but not how to achieve the goal; while in `Java`, we care about the both what and how to achieve the objectives.
+* Expressions and Statements: In `OCaml`, we only have expressions which evaluate into values; while in `Java`, we have both statements and expressions, thus state changes are very important in imperative language.
+* Primitive flow control: In `OCaml`, we implement recursion a lot and function calls are the primitive flow control; while in `Java`, we have loops, conditions and function calls.
+* Primitive manipulation unit: In `OCaml`, we have functions as the first-class objects and data collections; In `Java`, we have instances of structures or classes;
 
 ## Q5. Write Java code to test whether your Java environment performs tail-recursion optimisations or not.
-```java
-// TODO
-```
+* No, java does not perform tail-recursion optimisations.
+* Because in the `Factorial` functions, the run time of the tail-recursion version is similar or even slower than the version without tail-recursion.
+ 
 
 ## Q6. Write a static function lowestCommon that takes two long arguments and returns the position of the first set bit in common, where position 0 is the LSB. If there is no common bit, the function should return -1. For example lowestCommon(14,25) would be 3. Your solution should use at least one break statement.
 [Question 6 code on Github](https://github.com/KyraZzz/PartIA_OOP/blob/master/Supervision1/src/main/java/supervision1/LowestCommon.java)
@@ -112,21 +113,23 @@ public class Test {
 * Advantage:
     * Avoid the confusion between access modifiers, programmers do not need to write extra setter and getter method to access and change the variable values.
 * Disadvantage:
-    * Convention is not equivalent to syntax, so programmers who are not familiar with this convention might accidently access and modify the variable values from outside of the class, this might lead to bugs.
+    * Convention is not equivalent to syntax, so programmers who are not familiar with this convention might accidentally access and modify the variable values from outside of the class, this might lead to bugs.
 
 ### Q13. Complete the Matrices programming task on Chime
-* (a) Why is it neccessary for the assertions to have the form assertThat(actual).isWithin(tolerance).of(expected);?
+[Part 1 Code](https://chime.cl.cam.ac.uk/page/repos/yz709/matrices/code/f94c6b7a77f5bfed6ecded3ebbd8d8ca7b5c4efd)
+
+[Part 2 Code](https://chime.cl.cam.ac.uk/page/repos/yz709/matrices/code/1f02812fdab58f594d8c9acbb831a76902a9c016)
+* (a) Why is it necessary for the assertions to have the form assertThat(actual).isWithin(tolerance).of(expected);?
     * Because we are dealing with `double` which has a precision limit and when we manipulate the two matrices, for instance, one of the element in the matrix is 7.00000000000001 and the corresponding element in the other matrix is 1.0, when added together, this gives us 8.0 while the correct answer is 8.0000000000001.
 * (b) Why have the static factory methods been put in the Shapes class rather than Matrix?
-    
-```java
-// TODO
-```
+    * One of the principles of Object-oriented programming is encapsulation, which indicates that a unit class should bundle related data and the methods operated on the data together.
+    * The Shape class contains different types of Matrix and the Matrix class contains different operations on the Matrix. If we put all the static methods into the Matrix class, then it will grow a lot in size and become hard to maintain.
 
 ### Q14. This question considers representing a 2D vector in Java.
 * (a) Develop a mutable class Vector2D to embody the notion of a 2D vector based on floats (do not
 use Generics). At a minimum your class should support addition of two vectors; scalar product;
 normalisation and magnitude.
+
 [Code for Part(a) and Part(c) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question14)
 * (b) What changes would be needed to make it immutable?
     * Set the fields of the matrix as final so that their values can only be assigned only once.
@@ -151,4 +154,76 @@ versions.
 * 
     * Type erasure is applied at compile time and if we instantiate the objects as generics then its type will be erased at compile time. 
 
+### Q16. (W) Complete the second part of the ‘Classic collections’ task (using generics) on Chime
+[Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/0d01ad3eb067e1ffc4b823079dcb3098cb9f4bb3)
 
+[Reference on Generics and static inner class and methods](https://www.oreilly.com/library/view/java-generics-and/0596527756/ch04.html)
+
+> You could have either made Node an instance inner class or a generic class with its own type parameter. What are the pros and cons of these options?
+
+* Instance inner class is a non-static nested class and can access the generic type of the outer class; while a generic class with its own type parameter is a nested static class and cannot access the generic type of the outer class.
+* Instance inner class:
+    * Pros: Every instance of the container class will be tied closely to the instance of the inner class.
+    * Cons: The instance of the inner class can interact with instance of the outer class, thus harder to maintain and debug.
+* Generic class with its own type parameter:
+    * Pros: Can only interact with the container class's static field and thus more efficient and easy to understand.
+    * Cons: Cannot interact with the container class's non-static fields and have limited use.
+    
+### Q17. Complete the Sorting task on Chime.
+(a) When implementing Merge Sort you will need some temporary space for the merging part of the
+algorithm. You will find that you are unable to create new arrays of type T i.e. if you try T[] temp
+= new T[10] you will get a compile error. You can use a plain Object array or a new ArrayList〈T〉
+instead. Bearing in mind the concept of type-erasure why does this fail to compile? Why does
+Object[] or ArrayList〈T〉 work?
+* Because during compile time, the compiler applies type erasure which gets rid of the <T> type.
+[Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/sorting/code)
+
+### Q18. Research the notion of wildcards in Java Generics. Using examples, explain the problem they solve.
+```java
+// TODO
+```
+
+### Q19. Pointers are problematic because they might not point to anything useful. A null reference doesn't point to anything useful. So what is the advantage of using references over pointers?
+* References do not support arithmetic operations so that prevent the references being misused (i.e., if someone maliciously add some value onto the pointer, it will points to a different address of the memory and may leads to bugs in the program)
+* References are strongly typed so we cannot chang the type of the reference, immutability of the type of the reference prevent it being misused.
+* References are implemented to ease garbage collector.
+
+### Q20. (W) Draw some simple diagrams to illustrate what happens with each step of the following Java code in memory:
+```java
+// TODO
+Person p = null;
+Person p2 = new Person();
+p = p2;
+p2 = new Person();
+p = null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+### Q21. What would you say are the three most important concepts from the content for this supervision?
+* The principles of Object-oriented programming:
+    * Encapsulation
+    * Abstraction
+    * Inheritance (later in the course)
+    * Polymorphism 
+* The difference between functional programming language and procedural programming language
+* Immutability, difference between reference types and primitive types (i.e., memory storage format, relationship to the Generics etc.)
+
+### Q22. Give one question that you would like to discuss in the supervision.
+* OOP widening and narrowing question:
+    * Why the following operations give Compiler error:
+        * bool -> int ?
+        * char ->  short ?
