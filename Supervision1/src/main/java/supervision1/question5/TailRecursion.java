@@ -1,4 +1,4 @@
-package supervision1;
+package supervision1.question5;
 
 
 public class TailRecursion{
