@@ -127,8 +127,13 @@ public class Test {
 * (a) Develop a mutable class Vector2D to embody the notion of a 2D vector based on floats (do not
 use Generics). At a minimum your class should support addition of two vectors; scalar product;
 normalisation and magnitude.
-
+[Code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question14)
 * (b) What changes would be needed to make it immutable?
+    * Set the fields of the matrix as final so that their values can only be assigned only once.
+    * Make all the fields as private so that we do not allow direct access.
+    * No setter methods provided for the fields.
+    * Initializing all the fields using a constructor performing deep copy.
+    * Performing cloning of objects in the getter methods to return a copy rather than returning the actual object reference
 * (c) Contrast the following prototypes for the addition method for both the (i) mutable, and (ii) immutable
 versions.
     * public void add(Vector2D v)
@@ -136,6 +141,7 @@ versions.
     * public Vector2D add(Vector2D v1, Vector2D v2)
     * public static Vector2D add(Vector2D v1, Vector2D v2)
 (d) How can you convey to a user of your class that it is immutable?
+    * Using unit testing to ensure that when constructing the vector, we have taken a deep copy of the value, and after initialization, the value of the vector is unable to be reassigned.
 
 
 
