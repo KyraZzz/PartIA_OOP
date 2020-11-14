@@ -32,7 +32,7 @@ such as null pointer exception.
 ## Q5. Write Java code to test whether your Java environment performs tail-recursion optimisations or not.
 * No, java does not perform tail-recursion optimisations.
 * Because in the `Factorial` functions, the run time of the tail-recursion version is similar or even slower than the version without tail-recursion.
- 
+[Question 5 code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question5)
 
 ## Q6. Write a static function lowestCommon that takes two long arguments and returns the position of the first set bit in common, where position 0 is the LSB. If there is no common bit, the function should return -1. For example lowestCommon(14,25) would be 3. Your solution should use at least one break statement.
 [Question 6 code on Github](https://github.com/KyraZzz/PartIA_OOP/blob/master/Supervision1/src/main/java/supervision1/LowestCommon.java)
@@ -71,6 +71,28 @@ Computer c = null;
 * (d) Give the UML class diagram for your code.
 ```java
 // TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
 
 ### Q9. In mathematics, a set of integers refers to a collection of integers that contains no duplicates. You typically want to insert numbers into a set and query whether the set contains numbers. One approach is to store the numbers in a binary search tree.
@@ -179,8 +201,30 @@ Object[] or ArrayList〈T〉 work?
 [Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/sorting/code)
 
 ### Q18. Research the notion of wildcards in Java Generics. Using examples, explain the problem they solve.
-```java
-// TODO
+* The definition: a collection of unknown which includes all kinds of collections.
+* Purpose: 
+    * Cast a collection to a subclass of a class or a superclass of a class
+    * Reading from a generic collection
+    * Inserting into a generic collection
+    
+[Reference of the wildcards in Java Generics](http://tutorials.jenkov.com/java-generics/wildcards.html)  
+``` java
+// If we have three classes, Both B and C inherits from A
+public class A{}
+public class B extends A{}
+public class C extends A{}
+// If the class A has the following method, we can only pass the List<A> type as its parameter
+public void processElements(List<A> elements){
+   for(A o : elements){
+      System.out.println(o.getValue());
+   }
+}
+// What if we want to call this method and pass List<B> and List<C> type as its parameter? We can use wildcards
+public void processElements(List<?> elements){
+   for(Object o : elements){
+      System.out.println(o);
+   }
+}
 ```
 
 ### Q19. Pointers are problematic because they might not point to anything useful. A null reference doesn't point to anything useful. So what is the advantage of using references over pointers?

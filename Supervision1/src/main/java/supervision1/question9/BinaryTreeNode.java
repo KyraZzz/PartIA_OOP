@@ -2,12 +2,13 @@ package supervision1.question9;
 
 public class BinaryTreeNode {
     private int mValue;
-    BinaryTreeNode leftChild;
-    BinaryTreeNode rightChild;
+    BinaryTreeNode mLeft;
+    BinaryTreeNode mRight;
+
     BinaryTreeNode(int value){
         mValue = value;
-        leftChild = null;
-        rightChild = null;
+        mLeft = null;
+        mRight = null;
     }
     int getValue(){
         return mValue;
@@ -16,15 +17,15 @@ public class BinaryTreeNode {
         mValue = value;
     }
     BinaryTreeNode getLeft(){
-        return leftChild;
+        return mLeft;
     }
     BinaryTreeNode getRight(){
-        return rightChild;
+        return mRight;
     }
     void setLeft(BinaryTreeNode lc){
-        leftChild = lc;
+        mLeft = lc;
     }
     void setRight(BinaryTreeNode rc){
-        rightChild = rc;
+        mRight = rc;
     }
 }
