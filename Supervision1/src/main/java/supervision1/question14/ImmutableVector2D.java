@@ -10,8 +10,11 @@ public class ImmutableVector2D {
     }
 
     ImmutableVector2D(float[] elements){
-        this.elements = elements;
         this.height = elements.length;
+        this.elements = new float[height];
+        for (int i=0;i<height;i++){
+            this.elements[i] = elements[i];
+        }
     }
 
     // Mutable add is not supported in the ImmutableVector2D

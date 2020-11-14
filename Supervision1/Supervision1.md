@@ -127,7 +127,7 @@ public class Test {
 * (a) Develop a mutable class Vector2D to embody the notion of a 2D vector based on floats (do not
 use Generics). At a minimum your class should support addition of two vectors; scalar product;
 normalisation and magnitude.
-[Code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question14)
+[Code for Part(a) and Part(c) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision1/src/main/java/supervision1/question14)
 * (b) What changes would be needed to make it immutable?
     * Set the fields of the matrix as final so that their values can only be assigned only once.
     * Make all the fields as private so that we do not allow direct access.
@@ -143,5 +143,12 @@ versions.
 (d) How can you convey to a user of your class that it is immutable?
     * Using unit testing to ensure that when constructing the vector, we have taken a deep copy of the value, and after initialization, the value of the vector is unable to be reassigned.
 
+### Q15. Explain in detail why Java’s Generics do not support the use of primitive types as the parameterised type? Why can you not instantiate objects of the template type in generics (i.e. why is new T() forbidden?)
+* 
+    * Java's Generics only support reference types and not primitive types, because at compile time, primitive types has their own bytecode instructions for loading and storing onto the virtual machine stack.
+    * Although it is not impossible to implement, it will make the compiler complicated.
+
+* 
+    * Type erasure is applied at compile time and if we instantiate the objects as generics then its type will be erased at compile time. 
 
 
