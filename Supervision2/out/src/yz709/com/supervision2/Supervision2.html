@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Q23&period; &lpar;W&rpar; Explain the result of the following code&period;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h3 id="q23-w-explain-the-result-of-the-following-code">Q23. (W) Explain the result of the following code.</h3>
+<pre><code class="language-java"><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] xy,<span class="hljs-keyword">int</span> dx, <span class="hljs-keyword">int</span> dy)</span> </span>{
+xy[<span class="hljs-number">0</span>]+=dx;
+xy[<span class="hljs-number">1</span>]+=dy;
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> dx, <span class="hljs-keyword">int</span> dy)</span> </span>{
+x=x+dx;
+y=y+dy;
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+<span class="hljs-keyword">int</span> xypair[] = {<span class="hljs-number">1</span>,<span class="hljs-number">1</span>};
+add(xypair[<span class="hljs-number">0</span>], xypair[<span class="hljs-number">1</span>], <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+System.out.println(xypair[<span class="hljs-number">0</span>]+<span class="hljs-string">&quot; &quot;</span>+xypair[<span class="hljs-number">1</span>]);
+add(xypair,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
+System.out.println(xypair[<span class="hljs-number">0</span>]+<span class="hljs-string">&quot; &quot;</span>+xypair[<span class="hljs-number">1</span>]);
+}
+</div></code></pre>
+<ul>
+<li>When calling the Java functions, the arguments are passed by value: the primitive types are passed by their actual value while the reference types are passed by their value of the reference, not the actual data stored on the heap.</li>
+<li><code>xypair</code> is a reference type while <code>xypair[0]</code> is the data stored one the heap pointed by the reference at index 0, so it is an actual value.</li>
+<li>The first command <code>add(xypair[0], xypair[1], 1, 1)</code>: all the arguments are primitive types, so the actual value stored on the heap which is pointed by the reference are not changed. So the result of the first print command is <code>1 1</code>.</li>
+<li>The second command <code>add(xypair,1,1)</code>: since the add function is overloaded, in this case, we passed a reference type and two primitive types to the overloaded add function. We have modified the value stored on the heap because the reference type passed to the function points to the same data stored on the heap. So the output of the second print statement is <code>2 2</code>.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q24-w-a-student-wishes-to-create-a-class-for-a-3d-vector-and-chooses-to-derive-from-the-vector2d-class-ie-public-void-vector3d-extends-vector2d-the-argument-is-that-a-3d-vector-is-a-2d-vector-with-some-stuff-added-explain-the-conceptual-misunderstanding-here">Q24. (W) A student wishes to create a class for a 3D vector and chooses to derive from the Vector2D class (i.e. public void Vector3D extends Vector2D). The argument is that a 3D vector is a “2D vector with some stuff added”. Explain the conceptual misunderstanding here.</h3>
+<ul>
+<li>Parent class and child class have an &quot;is a&quot; relationship, since the 3D vector is not a 2D vector, we cannot treat the 3D vector class as a subclass of the 2D vector class.</li>
+<li>The purpose of inheritance is to reuse a similar block of codes and boost efficiency. Child class needs to inherit fields and methods from its parent class. The Child class can overwrite the functions and add more fields. However, in the case of the 3D vector, it needs to rewrite every function (i.e., add, multiply, subtract, inverse, transpose etc), so extending from the Vector2D class will bring minimal benefits.</li>
+<li>3D vector and 2D vector are both belong to the vector interface, and they are siblings rather than parent and child.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q25-w-if-you-dont-specify-an-access-modifier-when-you-declare-a-member-field-of-a-class-what-does-java-assign-it-demonstrate-your-answer-by-providing-minimal-java-examples-that-will-and-will-not-compile-as-appropriate">Q25. (W) If you don’t specify an access modifier when you declare a member field of a class, what does Java assign it? Demonstrate your answer by providing minimal Java examples that will and will not compile, as appropriate.</h3>
+<ul>
+<li>Java will specify it as <code>package</code> which means the files in the same package can have access to this particular member field.</li>
+<li>Suppose we have 3 classes, one called &quot;Bicycle&quot; and has a &quot;colour&quot; fields that is has no access modifier specified. The second is under the same package as &quot;Bicycle&quot;, the third one is under a different package of &quot;Bicycle&quot;.</li>
+<li>The main method in the <code>GetColour</code> class will compile while the main method in the <code>GetColour2</code> class will not compile. The reason is that the second class in not in the same package as the <code>Bicycle</code> class, thus it has no access authorities to the fields with a package access modifier, that is, the <code>color</code> field in the <code>Bicycle</code> class.</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-comment">// file1: Bicycle</span>
+<span class="hljs-keyword">package</span> bicycle;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bicycle</span> </span>{
+    String colour = <span class="hljs-string">&quot;Green&quot;</span>;
+    Bicycle(){
+    <span class="hljs-comment">// ...</span>
+    }
+}
+</div></code></pre>
+<pre><code class="language-java"><div><span class="hljs-comment">// file2: GetColour</span>
+<span class="hljs-keyword">package</span> bicycle;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetColour</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    Bicycle myBike = <span class="hljs-keyword">new</span> Bicycle();
+    System.out.println(myBike.colour);
+    }
+}
+</div></code></pre>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> car;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetColour2</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    Bicycle myBike = <span class="hljs-keyword">new</span> Bicycle();
+    System.out.println(myBike.colour);
+    }
+}
+</div></code></pre>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q26-suggest-uml-class-diagrams-that-could-be-used-to-represent-the-following-think-carefully-about-the-directions-of-and-multiplicities-on-your-arrows">Q26. Suggest UML class diagrams that could be used to represent the following. Think carefully about the directions of and multiplicities on your arrows.</h3>
+<p>(a) A shop is composed of a series of departments, each with its own manager. There is also a store
+manager and many shop assistants. Each item sold has a price and a tax rate.</p>
+<p><img src="file:////Users/Kyra_ZHOU/Desktop/uk/ac/partIA/OOP/PartIA_OOP/Supervision2/src/yz709/com/supervision2/a.png" alt="Answer for part (a)"></p>
+<p>(b) Vehicles are either motor-driven (cars, trucks, motorbikes, electric bikes) or human-powered (bikes,
+skateboards,scooters). All cars have 3 or 4 wheels and all bikes have two wheels. Every vehicle has
+an owner. Some vehicles must have road tax.</p>
+<p><img src="file:////Users/Kyra_ZHOU/Desktop/uk/ac/partIA/OOP/PartIA_OOP/Supervision2/src/yz709/com/supervision2/b.png" alt="Answer for part (b)"></p>
+<pre><code class="language-java"><div><span class="hljs-comment">// Comments:</span>
+
+
+
+</div></code></pre>
+<h3 id="q27-consider-the-java-class-below">Q27. Consider the Java class below:</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> questions;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span> </span>{
+MODIFIER <span class="hljs-keyword">int</span> value = <span class="hljs-number">3</span>;
+};
+</div></code></pre>
+<p>Another class Y attempts to access the field value in an object of type X. Describe what happens at
+compilation and/or runtime for the range of MODIFIER possibilities (i.e. public, protected, private and
+unspecified) under the following circumstances:</p>
+<p>(a) Y subclasses X and is in the same package;</p>
+<ul>
+<li><code>public</code>: No compile error or runtime error.</li>
+<li><code>protected</code>: No compile error or runtime error since Y is the subclass of X and they are in the same package.</li>
+<li><code>private</code>: Compile time and runtime error, because private fields can only be accessed within the same class.</li>
+<li><code>unspecified(package)</code>: No compile error or runtime error since Y and X are in the same package.</li>
+</ul>
+<p>(b) Y subclasses X and is in a different package;</p>
+<ul>
+<li><code>public</code>: No compile error or runtime error.</li>
+<li><code>protected</code>: No compile error or runtime error since Y is the subclass of X</li>
+<li><code>private</code>: Compile time and runtime error, because private fields can only be accessed within the same class.</li>
+<li><code>unspecified(package)</code>: Compile time and runtime error, because Y and X are not in the same package.</li>
+</ul>
+<p>(c) Y does not subclass X and is in the same package;</p>
+<ul>
+<li><code>public</code>: No compile error or runtime error.</li>
+<li><code>protected</code>: No compile error or runtime error since Y and X are in the same package.</li>
+<li><code>private</code>: Compile time and runtime error, because private fields can only be accessed within the same class.</li>
+<li><code>unspecified(package)</code>: No compile error or runtime error since Y and X are in the same package.</li>
+</ul>
+<p>(d) Y does not subclass X and is in a different package.</p>
+<ul>
+<li><code>public</code>: No compile error or runtime error.</li>
+<li><code>protected</code>: Compile time and runtime error, because Y and X are not in the same package and Y is not a subclass of X.</li>
+<li><code>private</code>: Compile time and runtime error, because private fields can only be accessed within the same class.</li>
+<li><code>unspecified(package)</code>: Compile time and runtime error, because Y and X are not in the same package.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q28-w-explain-what-is-meant-by-dynamic-polymorphism-in-oop-and-explain-why-it-is-useful-illustrating-your-answer-with-an-example">Q28. (W) Explain what is meant by (dynamic) polymorphism in OOP and explain why it is useful, illustrating your answer with an example.</h3>
+<ul>
+<li>Dynamic polymorphism means the value and variables will have multiple types, and the types are determined at run-time.</li>
+<li>Why useful?
+<ul>
+<li>We can use dynamic polymorphism in collections. We can iterate through a collection of objects from different classes but inherit the same parent class/interface and invoke the same method. Thus, it prevents us from rewriting the same method for each object.</li>
+<li>More flexible API. We can create a method which expects a single interface and pass different objects to the method to invoke various overriding methods.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dance</span></span>{
+       <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dance</span><span class="hljs-params">()</span></span>{
+           System.out.println(<span class="hljs-string">&quot;Dance&quot;</span>);       
+       }
+   };  
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Jazz</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Dance</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dance</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;Jazz&quot;</span>);       
+    }
+};  
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pop</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Dance</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dance</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;Pop&quot;</span>);       
+    }
+};
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startDance</span><span class="hljs-params">(Dance dancer)</span></span>{
+    dancer.dance();
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>{
+  Dance dancer1 = <span class="hljs-keyword">new</span> Dance();
+  Dance dancer2 = <span class="hljs-keyword">new</span> Jazz();
+  Dance dancer3 = <span class="hljs-keyword">new</span> Pop();
+  <span class="hljs-comment">// First advantage:</span>
+  ArrayList&lt;Dance&gt; danceList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;({dancer1,dancer2,dancer3});
+  <span class="hljs-keyword">for</span> (Dance item:danceList){
+      item.dance();
+  }
+  <span class="hljs-comment">// Second advantage:</span>
+  dancer1.startDance();
+  dancer2.startDance();
+  dancer3.startDance();
+}
+}
+</div></code></pre>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q29-a-programming-language-designer-proposes-adding-selective-inheritance-whereby-a-programmer-manually-specifies-which-methods-or-fields-are-inherited-by-any-subclasses-comment-on-this-idea">Q29. A programming language designer proposes adding ‘selective inheritance’ whereby a programmer manually specifies which methods or fields are inherited by any subclasses. Comment on this idea.</h3>
+<ul>
+<li>Advantage:
+<ul>
+<li>Less classes needed because we can construct a general class and select fields or methods from it to form our different subclasses.</li>
+</ul>
+</li>
+<li>Disadvantage:
+<ul>
+<li>We need to handle more exceptions if the subclass accidentally try to access the fields or methods that they are not allowed to.</li>
+<li>Violates the idea of encapsulation because the fields and methods are separated by the selective inheritance.</li>
+<li>If we want to inherit an additional field or method from the superclass, we have to manually permit that field or method to be inherited.</li>
+<li>Different subclasses might inherit different fields or methods from the superclass, with selective inheritance, programmers should specify the particular fields or methods each subclass is allowed to inherit in the superclass, which is cumbersome and error prone.</li>
+<li>We can achieve the same effect by using a chain of interfaces and classes.</li>
+</ul>
+</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+
+</div></code></code></pre>
+<h3 id="q30-a-computer-science-department-keeps-track-of-its-cs-students-using-some-custom-software-each-student-is-represented-by-a-student-object-that-features-a-pass-method-that-returns-true-if-and-only-if-the-student-has-all-20-ticks-to-pass-the-year-the-department-suddenly-starts-teaching-ns-students-who-only-need-10-ticks-to-pass-using-inheritance-and-polymorphism-show-how-the-software-can-continue-to-keep-all-student-objects-in-one-list-in-code-without-having-to-change-any-classes-other-than-student">Q30. A Computer Science department keeps track of its CS students using some custom software. Each student is represented by a Student object that features a pass() method that returns true if and only if the student has all 20 ticks to pass the year. The department suddenly starts teaching NS students, who only need 10 ticks to pass. Using inheritance and polymorphism, show how the software can continue to keep all Student objects in one list in code without having to change any classes other than Student.</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span></span>{
+    <span class="hljs-keyword">int</span> numTick;
+    <span class="hljs-keyword">int</span> passNumTick=<span class="hljs-number">20</span>;
+    Student(<span class="hljs-keyword">int</span> numTick){
+        <span class="hljs-keyword">this</span>.numTick = numTick;
+    }
+    <span class="hljs-comment">// overloading the constructor to allow a change in the number of the ticks for a pass</span>
+    Student(<span class="hljs-keyword">int</span> numTick, <span class="hljs-keyword">int</span> passNumTick){
+        <span class="hljs-keyword">this</span>.numTick = numTick;
+        <span class="hljs-keyword">this</span>.passNumTick = passNumTick;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pass</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> numTick &gt;= passNumTick;
+    }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NatsciStudent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Student</span></span>{
+    NatsciStudent(<span class="hljs-keyword">int</span> numTick){
+        <span class="hljs-keyword">super</span>(numTick,<span class="hljs-number">10</span>);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pass</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> Student.<span class="hljs-keyword">this</span>.numTick &gt;= Student.<span class="hljs-keyword">this</span>.passNumTick;
+}
+}
+</div></code></pre>
+<ul>
+<li>initialise the field <code>passNumTick</code> with 20 and use this field in the <code>pass()</code> method so that all the CST student object won't be affected.</li>
+<li>Overload the constructor of the <code>Student</code> class so that we can pass an additional argument to change the number of the ticks needed for a pass for the NST students.</li>
+<li>Construct a new class called <code>NatsciStudent</code> to override the <code>pass</code> method.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+</div></code></code></pre>
+<h3 id="q31-complete-the-chess-practical-exercise-on-chime">Q31. Complete the Chess practical exercise on Chime</h3>
+<p><a href="https://chime.cl.cam.ac.uk/page/repos/yz709/chess/code/2c41a05381d39018505f998ba1c577e296cc16a3">Chess program on Chime</a></p>
+<p>(a) Which are the parts of the program which are poorly designed with switch statements for pieces?</p>
+<ul>
+<li>Poorly designed parts:
+<ul>
+<li><code>icon()</code>, <code>value()</code> <code>validNextPositions()</code> are poorly designed as they contain switch statements that switches based on the name of the pieces.</li>
+</ul>
+</li>
+</ul>
+<p>(b) In what ways is your new code easier to maintain than previously? What drawbacks have arisen from
+this new approach?</p>
+<ul>
+<li>
+<p>Advantages:</p>
+<ul>
+<li>The <code>Piece</code> class is shorter and much easier to be maintained.</li>
+<li>The implementation details can be better encapsulated for each piece because we do not need to write all of them in the <code>Piece</code> class.</li>
+<li>Dynamic Polymorphic can be implemented in the methods so that compiler will check the type of the piece at run-time while regards all pieces as <code>Piece</code> type at compile-time.</li>
+<li>Easier to iterate through a collection of pieces and invoke the overloading methods.</li>
+<li>We can add more pieces easily if the chess game is going to be modified. This is because the methods can be override in each piece class rather than adding switch statements in each function in the <code>Piece</code> class.</li>
+</ul>
+</li>
+<li>
+<p>Disadvantages:</p>
+<ul>
+<li>More classes need to be added (i.e., one for each piece), the same method signature needs to be written multiple times.</li>
+<li>More repeated codes in an overloading method. If there are some codes applied to all pieces in a method, then when we are writing overloading methods, we have to include those codes. For instance, in the <code>icon()</code> function, the <code>colourSwitch</code> statement needs to be written in every version of the overriding method.</li>
+</ul>
+</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+
+</div></code></code></pre>
+<h3 id="q32-in-the-second-of-the-shape-drawing-examples-in-lectures-we-relied-on-the-existence-of-an-instanceof-operator-that-allowed-us-to-check-which-class-the-object-really-was-the-built-in-ability-to-do-this-is-called-reflection-however-not-all-oop-languages-support-reflection-show-how-we-could-modify-the-shape-classes-to-allow-us-to-determine-the-true-type-without-using-reflection">Q32. In the second of the shape drawing examples in lectures, we relied on the existence of an instanceof operator that allowed us to check which class the object really was. The built-in ability to do this is called reflection. However, not all OOP languages support reflection. Show how we could modify the shape classes to allow us to determine the true type without using reflection.</h3>
+<ul>
+<li>Use dynamic polymorphic. Treat each object as an object of the shape superclass and then let the compiler to determine which subclass it belongs to at runtime.</li>
+<li>In the main function, we want to invoke the draw method for each shape. At compiler time, compiler will treat each object as an object in the Shape superclass, but at run time, it will examine the type of the object and invoke the correct overridden method in each of the subclasses.</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span></span>{
+    <span class="hljs-keyword">int</span> x;
+    <span class="hljs-keyword">int</span> y;
+    Shape(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y){
+    <span class="hljs-keyword">this</span>.x = x;
+    <span class="hljs-keyword">this</span>.y = y;
+}
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;Shape&quot;</span>);           
+    }
+};
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span></span>{
+    Triangle(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y){
+    <span class="hljs-keyword">super</span>(x,y);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;Triangle&quot;</span>);   
+    }
+}
+<span class="hljs-comment">// ...</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>{
+  ArrayList&lt;Shape&gt; shapeList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+  <span class="hljs-keyword">for</span> (Shape s:shapeList){
+      s.draw();
+  }
+}
+</div></code></pre>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q33-w-explain-the-differences-between-a-class-an-abstract-class-and-an-interface-in-java">Q33. (W) Explain the differences between a class, an abstract class and an interface in Java.</h3>
+<ul>
+<li>Fields: Interface can only have static and final fields that are not allowed to be changed; Abstract class and class can have final, non-finanl, static and non-static variables;</li>
+<li>Methods: Interfaces and abstract class have no detailed implementations for the abstract methods, but abstract class can have non-abstract methods while interfaces can only have abstract methods or final static methods; Class can only have non-abstract methods.</li>
+<li>Access modifiers: Interface only has fields and methods that are public; Abstract class and class can have either private, protected, package or public fields or methods.</li>
+<li>Multiple inheritance: Interface supports multiple inheritance while class and abstract class does not.</li>
+<li>Inheritance: Abstract class can extends another abstract class or implement multiple interfaces while interface can only implement another interface; Class can extends class(including abstract class) or implement interfaces.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q34-an-alternative-implementation-of-a-list-to-a-linked-list-uses-an-array-as-the-underlying-data-structure-rather-than-a-linked-list">Q34. An alternative implementation of a list to a linked list uses an array as the underlying data structure rather than a linked list.</h3>
+<p>(a) Write down the asymptotic complexities of the array-based list methods.</p>
+<ul>
+<li><code>addFirst()</code>: O(n) because we have to shift all the elements in the arrayedlist to right for 1 position and then add the new element at index 0.</li>
+<li><code>removeFirst()</code>: O(n) because once we removed the first element, all the following elements need to be shifted left by 1 position.</li>
+<li><code>get()</code>: O(1) because the items in the arrayedlist are stored in consecutive memory addresses and each item can be fetched in constant time by adding an offset onto the address of the first element.</li>
+</ul>
+<p>(b) Complete part 3 of the ‘Classic collections’ (adding interfaces) task on Chime.</p>
+<p><a href="https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/a0d99d0a3f01b9a57bfe1afbdc89ad647f71107a">Part3 code on Chime</a></p>
+<p>(c) When adding items to an array-based list, rather than expanding the array by one each time, the array
+size is often doubled whenever expansion is required. Analyse this approach to get the asymptotic
+complexities associated with an insertion</p>
+<ul>
+<li>With insertion operation, when the number of the elements is equivalent to the maximum size of the array, we have to double the size of the array first.</li>
+<li>In the <code>doubleSize()</code> operation, all the original elements are copied to a new array with double the size of the original one, this examines <code>n</code> elements in total, this has a time complexity of O(n).</li>
+<li>After doubling the size, we have to insert the new element into the array, that has a time complexity of O(n) as well because in the worst case, we insert elements in the first index and we have to shift all remaining elements to the right by 1 position.</li>
+<li>So the total time complexity is O(n) although we have two iteration loops under the worst senario.</li>
+<li>The reason why we doubling the size rather than incrementing the size by one each time when the array gets full is that if we increment the array by one each time, inserting <code>n</code> element will require <code>n</code> expanding operations which is ineffective.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q35-">Q35. (*)</h3>
+<p>(a) Complete parts 4 and 5 of the ‘Classic collections’ (queues) task on Chime.</p>
+<p><a href="https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/70aa297478c548ce3b13fd98520db1c459307133">Part 4 Classic collections on Chime</a></p>
+<p><a href="https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/ddd0aa496b4573fb4b72be6a5df521bdc1a23200">Part 5 Classic collections on Chime</a></p>
+<p>(b) State the asymptotic complexities of the approach.</p>
+<ul>
+<li>
+<p><code>reverse()</code> function in part 4:</p>
+<ul>
+<li>
+<p>For the <code>LinkedList</code> class:</p>
+<ul>
+<li>We utilise a recursive structure, each time we split the linked list into 2 parts, one with the current first element, while the other part has the rest of the elements. Recursively applying the <code>reverse()</code> function until we have one element left, then reverse the link from that element to the previous one. We also have to set the current element to point to null because we need to ensure the tail element should point to null at the end. Another point to bear in mind is to keep track of the new head element so that we can assign head to this new head element in the end.</li>
+<li>Time complexity is O(n) because we examine all the elements only once and update the links between them along the way.</li>
+</ul>
+</li>
+<li>
+<p>For the <code>ArrayedList</code> class:</p>
+<ul>
+<li>We utilise a for loop to copy the elements in the original ArrayedList to a new list but reverse the order.</li>
+<li>Time complexity is O(n) because we have gone through all the elements one by one in the for loop.</li>
+<li>Space complexity is O(n) since we need another ArrayedList to store the elements in reverse order.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The asymptotic complexity of the operations on the queue:</p>
+<ul>
+<li><code>push()</code>: invokes the <code>addFirst()</code> function on the frontList, so it has a time complexity of O(1). However, if the backList is empty, we need to apply the normalise operation which has a time complexity of O(n). Suppose we push n items and pop the n items back, the amortized number of operations still has a time complexity of O(1).</li>
+<li><code>pop()</code>: invokes the <code>removeFirst()</code> function on the backList, so it has a time complexity of O(1). Similarly, if the backList is empty, we need to check the frontList. If the frontList is not empty, then we have to normalise the queue first which has a time complexity of O(n).</li>
+<li><code>normalise()</code>: reverse the firstList and replace the backList with the reversed firstList. This operation has a time complexity of O(n) because we have to examine all the elements in the firstList and reverse the link between them.</li>
+</ul>
+</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q36-imagine-you-have-two-classes-employee-which-embodies-being-an-employee-and-ninja-which-embodies-being-a-ninja-you-need-to-represent-an-employee-who-is-also-a-ninja-a-common-problem-in-the-real-world-by-creating-only-one-interface-and-only-one-class-ninjaemployee-show-how-you-can-do-this-without-having-to-copy-method-implementation-code-from-either-of-the-original-classes">Q36. Imagine you have two classes: Employee (which embodies being an employee) and Ninja (which embodies being a Ninja). You need to represent an employee who is also a ninja (a common problem in the real world). By creating only one interface and only one class (NinjaEmployee), show how you can do this without having to copy method implementation code from either of the original classes.</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Employee</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doWork</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;I am doing work!!&quot;</span>);
+    }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ninja</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">highJump</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;I can do High jump&quot;</span>);
+    }
+
+}
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">combine</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doWork</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">highJump</span><span class="hljs-params">()</span></span>;
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NinjaEmployee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">combine</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doWork</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;I can do work much faster than normal homo sapians&quot;</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">highJump</span><span class="hljs-params">()</span></span>{
+        System.out.println(<span class="hljs-string">&quot;I have no time to do high jump because I have loads of work on my desk.&quot;</span>);
+    }
+}
+</div></code></pre>
+<ul>
+<li>This is a multiple-inheritance problem since the <code>Ninjaemployee</code> class needs to inherit from both the <code>Employee</code> class and the <code>Ninja</code> class.</li>
+<li>This can be implemented by using an interface which wrapped all the methods from the <code>Employee</code> class and the <code>Ninja</code> class without giveing any implementation details.</li>
+<li>When <code>Ninjaemployee</code> class implements the interface <code>combine</code>, it needs to override all the methods by providing its own method implementation details.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q37-w-write-a-small-java-program-that-demonstrates-constructor-chaining-using-a-hierarchy-of-three-classes-as-follows-a-is-the-parent-of-b-which-is-the-parent-of-c-modify-your-definition-of-a-so-that-it-has-exactly-one-constructor-that-takes-an-argument-and-show-how-b-andor-c-must-be-changed-to-work-with-it">Q37. (W) Write a small Java program that demonstrates constructor chaining using a hierarchy of three classes as follows: A is the parent of B which is the parent of C. Modify your definition of A so that it has exactly one constructor that takes an argument, and show how B and/or C must be changed to work with it.</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">package</span> yz709.com.supervision2;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> item;
+
+    A(<span class="hljs-keyword">int</span> item) {
+        <span class="hljs-keyword">this</span>.item = item;
+        System.out.println(<span class="hljs-string">&quot;A constructor&quot;</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-comment">// since A has a customised constructor, we have to explicitly invoke the</span>
+    <span class="hljs-comment">// super(args list) method</span>
+    B(<span class="hljs-keyword">int</span> item) {
+        <span class="hljs-keyword">super</span>(item);
+        System.out.println(<span class="hljs-string">&quot;B constructor&quot;</span>);
+    }
+
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">B</span> </span>{
+    <span class="hljs-comment">// Because of constructor chaining, B has a customised constructor hence we have</span>
+    <span class="hljs-comment">// to invoke the super(args list) method in C&#x27;s construtor as well</span>
+    C(<span class="hljs-keyword">int</span> item) {
+        <span class="hljs-keyword">super</span>(item);
+        System.out.println(<span class="hljs-string">&quot;C constructor&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstructorChaining</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        C myC = <span class="hljs-keyword">new</span> C(<span class="hljs-number">2</span>);
+    }
+}
+
+<span class="hljs-comment">/*
+ * 
+ * output:
+ * 
+ * A constructor 
+ * B constructor 
+ * C constructor
+ * 
+ */</span>
+
+
+</div></code></pre>
+<ul>
+<li>When we call the constructor of <code>C</code> in the <code>main()</code> method, the constructor of <code>C</code> is invoked</li>
+<li>Since class <code>C</code> inherits class <code>B</code>, we have to invoke the <code>super(int item)</code> method first to call the constructor of class <code>B</code>.</li>
+<li>Similarly, class <code>B</code> inherits from class <code>A</code>, so we have to explicitly call the class <code>A</code> constructor using the <code>super(int item)</code> procedure.</li>
+<li>The constructor of <code>A</code> runs and print the statement <code>A constructor</code>.</li>
+<li>Then the constructor of <code>B</code> runs and print the statement <code>B constructor</code>.</li>
+<li>Finally the constructor of <code>C</code> runs and print <code>C constructor</code>.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q38-the-lectures-described-the-main-mechanism-to-mark-objects-that-can-be-deleted-or-to-mark-objects-that-cannot-be-deleted-but-not-the-deletion-process-compare-and-contrast-the-following-approaches-in-terms-of-performance-your-answer-should-consider-the-costs-associated-with-marking-and-deleting">Q38. The lectures described the main mechanism to mark objects that can be deleted (or to mark objects that cannot be deleted), but not the deletion process. Compare and contrast the following approaches in terms of performance. Your answer should consider the costs associated with marking and deleting.</h3>
+<p>(a) The mark-sweep schemes delete the marked objects, leaving their memory available. A list of free memory chunks is maintained.</p>
+<p>(b) The mark-sweep-compact schemes delete the objects and then compact the memory by moving surviving objects to be adjacent to each other (i.e. no free memory between them).</p>
+<p>(c) The mark-copy schemes maintain two memory regions, one of which is active. During the marking process, surviving objects are copied into the other region. Once marking is complete, references are upated to the second region, which becomes active, and the first region is deleted.</p>
+<ul>
+<li>The (a) choice: The time complexity for marking is <code>O(n)</code> as we have to trace all the objects one by one. Keeping a list of memory can be effective in term of time complexity because when an object is deleted, it requires <code>O(1)</code> operation to add the address onto the list. However, we have to utilise some extra memory to store the list of the free memory chunk addresses. When there are a lot of free memory chunk addresses, the space requirement is big.</li>
+<li>The (b) choice: Despite the time complexity for marking which is <code>O(n)</code> since we have to go through all the objects, the deleting procedure is costly as well. Suppose we have a list of memory which has been used, if one object is deleted, then that particular memory space becomes free and we have to shift the used memory up by one. This give us a time complexity of <code>O(n)</code> in the worst case where the first memory space is being freed and all the following memory contents have to be copied int to the previous chunk. The space complexity depends on the amount of memory chunks used, which is the opposite to the space complexity of (a) choice.</li>
+<li>The (c) choice is not efficient when there are many surviving objects, because we have to mark and copy all the surviving objects into the other region, in the worst case, this will give a time complexity of <code>O(n)</code> if all objects are still surviving. We have to update each reference as well after copying all the surviving objects into the active memory region, which takes <code>O(n)</code> in the worst case as we have to iterate through all object references and update each one in turn.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q39-it-is-often-recommended-that-we-make-classes-immutable-wherever-possible-how-would-you-expect-this-to-impact-garbage-collection">Q39. It is often recommended that we make classes immutable wherever possible. How would you expect this to impact garbage collection?</h3>
+<ul>
+<li>This will improve the efficiency of the garbage collection process and reduce garbage collection overhead as less memory is required to allocate immutable classes if multiple objects are created.</li>
+<li>If all the classes are immuatble, no other classes can inherit from them, so the immuatable class can be safely shared among objects, that is, there will be less memory allocation required.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q40-what-are-the-issues-with-using-finalizers">Q40. What are the issues with using finalizers?</h3>
+<ul>
+<li>There is no guarantee that the <code>finalizer</code> method will run in the program;</li>
+<li>We are not clear about the timeline of the <code>finalizer</code> so that gives the programmer less control and might break down the program unexpectly if the object if unexpectly unreachable and the <code>finalizer</code> runs to destruct the object.</li>
+<li>We may run out of resources before a clean-up happens if a thread keeps producing obejcts at high speed and the <code>Finalizer</code> cannot keep up, which eventually cause <code>OutOfMemoryError</code>.</li>
+<li>Finalizer will impact the program's portability because the garbage collection algorithm is <code>JVM</code> implementation-dependent, a program may run very well on one system while having problems on the other</li>
+<li>There is a performance cost involved when an object has a <code>Finalizer</code> attached, because <code>JVM</code> have to perform more operations when constructing and destructing the object containing a non-empty <code>Finalizer</code>.</li>
+<li>The lack of exception handling during <code>Finalization</code> leads to a case that when a <code>finalizer</code> throws an exception and the finalization process stops, this leaves the object in a corrupted state without any notification.</li>
+</ul>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q41--in-java-tryfinally-blocks-can-be-applied-to-any-codeno-catch-is-needed-the-code-in-the-finally-block-is-guaranteed-to-run-after-that-in-the-try-block-suggest-how-you-could-make-use-of-this-to-emulate-the-behaviour-of-a-destructor-which-is-called-immediately-when-indicate-we-are-finished-with-the-object-not-at-some-indeterminate-time-later">Q41. (*) In Java try...finally blocks can be applied to any code—no catch is needed. The code in the finally block is guaranteed to run after that in the try block. Suggest how you could make use of this to emulate the behaviour of a destructor (which is called immediately when indicate we are finished with the object, not at some indeterminate time later).</h3>
+<pre><code class="language-java"><div><span class="hljs-keyword">import</span> java.io.Closeable;
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">myClass</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Closeable</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> item;
+
+    myClass(<span class="hljs-keyword">int</span> item) {
+        <span class="hljs-keyword">this</span>.item = item;
+    };
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span> </span>{
+        System.out.println(item);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        System.out.println(<span class="hljs-string">&quot;Closed&quot;</span>);
+
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DestructorWithTryFinally</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        myClass a = <span class="hljs-keyword">new</span> myClass(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">try</span> {
+            a.call();
+        } <span class="hljs-keyword">finally</span> {
+            a.close();
+        }
+    }
+}
+</div></code></pre>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q42-by-experimentation-or-otherwise-work-out-what-happens-when-the-following-method-is-executed">Q42. By experimentation or otherwise, work out what happens when the following method is executed</h3>
+<pre><code class="language-java"><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">x</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-keyword">try</span> {<span class="hljs-keyword">return</span> <span class="hljs-number">6</span>;}
+<span class="hljs-keyword">finally</span> { ... }
+}
+</div></code></pre>
+<ul>
+<li>When we call the method <code>x()</code>, the try block gets executed but before returning the result, it executes the finally block and in this case print the statement <code>finally block</code>.</li>
+<li>After the finally block is being executed, the method returns back the result <code>6</code> to the <code>main()</code> method.</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">x</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">6</span>;
+        } <span class="hljs-keyword">finally</span> {
+            System.out.println(<span class="hljs-string">&quot;finally block&quot;</span>);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        System.out.println(x());
+    }
+}
+
+</div></code></pre>
+<pre><code><code><div>// Comments:
+
+
+</div></code></code></pre>
+<h3 id="q43-what-would-you-say-are-the-three-most-important-concepts-from-the-content-for-this-supervision">Q43. What would you say are the three most important concepts from the content for this supervision?</h3>
+<ul>
+<li>The difference of Abstract class and interface and why we need interface</li>
+<li>Subtype polymorphism</li>
+<li>The chained object initialization</li>
+</ul>
+<h3 id="q44-give-one-question-that-you-would-like-to-discuss-in-the-supervision">Q44. Give one question that you would like to discuss in the supervision.</h3>
+<ul>
+<li>What is the difference between late-binding and reflection?</li>
+</ul>
+
+    </body>
+    </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>23&period; &lpar;W&rpar; Explain the result of the following code&period;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="23-w-explain-the-result-of-the-following-code">23. (W) Explain the result of the following code.</h2>
+<pre><code class="language-java"><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] xy,<span class="hljs-keyword">int</span> dx, <span class="hljs-keyword">int</span> dy)</span> </span>{
+xy[<span class="hljs-number">0</span>]+=dx;
+xy[<span class="hljs-number">1</span>]+=dy;
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y,<span class="hljs-keyword">int</span> dx, <span class="hljs-keyword">int</span> dy)</span> </span>{
+x=x+dx;
+y=y+dy;
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+<span class="hljs-keyword">int</span> xypair[] = {<span class="hljs-number">1</span>,<span class="hljs-number">1</span>};
+add(xypair[<span class="hljs-number">0</span>], xypair[<span class="hljs-number">1</span>], <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+System.out.println(xypair[<span class="hljs-number">0</span>]+<span class="hljs-string">&quot; &quot;</span>+xypair[<span class="hljs-number">1</span>]);
+add(xypair,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
+System.out.println(xypair[<span class="hljs-number">0</span>]+<span class="hljs-string">&quot; &quot;</span>+xypair[<span class="hljs-number">1</span>]);
+}
+</div></code></pre>
+<ul>
+<li>When calling the Java functions, the arguments are passed by value: the primitive types are passed by their actual value while the reference types are passed by their value of the reference, not the actual data stored on the heap.</li>
+<li><code>xypair</code> is a reference type while <code>xypair[0]</code> is the data stored one the heap pointed by the reference at index 0, so it is an actual value.</li>
+<li>The first command <code>add(xypair[0], xypair[1], 1, 1)</code>: all the arguments are primitive types, so</li>
+</ul>
+
+    </body>
+    </html>

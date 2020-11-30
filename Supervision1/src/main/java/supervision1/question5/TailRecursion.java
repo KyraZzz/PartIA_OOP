@@ -28,5 +28,7 @@ public class TailRecursion{
         endTime = System.nanoTime();
         System.out.println(res);
         System.out.println(endTime-startTime);
+        // rather than timing, we can force the program to run out of stack
+        System.out.println(factorialRec(1000000,1));
     }
 }
