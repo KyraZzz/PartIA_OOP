@@ -4,63 +4,62 @@ public class SearchSet {
     private int mElements;
     private BinaryTreeNode mHead;
 
-    public SearchSet(){
+    public SearchSet() {
     }
 
-    public void insert(int element){
-        BinaryTreeNode newNode = new BinaryTreeNode(1);
-        if (mHead==null){
-            mHead = new BinaryTreeNode(0);
+    public void insert(int element) {
+        BinaryTreeNode newNode = new BinaryTreeNode(element);
+        if (mHead == null) {
+            mHead = newNode;
+            mElements++;
+            return;
         }
         BinaryTreeNode current = mHead;
-        while (element!=1){
-            if (element%2==0){
-                if (current.mLeft==null){
-                    current.setLeft(new BinaryTreeNode(0));
+        while (true) {
+            if (element < mHead.getValue()) {
+                if (current.mLeft == null) {
+                    current.setLeft(newNode);
+                    mElements++;
+                    break;
                 }
                 current = current.getLeft();
-            }
-            else {
-                if (current.mRight==null){
-                    current.setRight(new BinaryTreeNode(0));
+            } else if (element > mHead.getValue()) {
+                if (current.mRight == null) {
+                    current.setRight(newNode);
+                    mElements++;
+                    break;
                 }
                 current = current.getRight();
+            } else {
+                break;
             }
-            element /= 2;
         }
-        current.setValue(1);
-        mElements++;
     }
 
-    public int getNumberElements(){
+    public int getNumberElements() {
         return mElements;
     }
 
-    public boolean contains(int element){
+    public boolean contains(int element) {
         BinaryTreeNode current = mHead;
-        while (element!=1){
-            if (element%2==0){
-                if (current.mLeft==null){
-                    current.setLeft(new BinaryTreeNode(0));
+        while (true) {
+            if (element < current.getValue()) {
+                if (current.mLeft == null) {
+                    return false;
                 }
                 current = current.getLeft();
-            }
-            else {
-                if (current.mRight==null){
-                    current.setRight(new BinaryTreeNode(0));
+            } else if (element > current.getValue()) {
+                if (current.mRight == null) {
+                    return false;
                 }
                 current = current.getRight();
+            } else {
+                return true;
             }
-            element /= 2;
         }
-        if(current.getValue()==1){
-            return true;
-        }
-        return false;
     }
 
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SearchSet s = new SearchSet();
         s.insert(3);
         s.insert(4);
