@@ -35,10 +35,38 @@
 ```
 
 ## Q46. Java provides the List interface and an abstract class that implements much of it called AbstractList. The intention is that you can extend AbstractList and just fill in a few implementation details to have a Collections-compatible structure. Write a new class CollectionArrayList that implements a mutable Collections-compatible Generics array-based list using this technique. Comment on any difficulties you encounter.
-
+[Question 46 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question45)
 * Difficulties I have encountered:
   
     1. Resize and reallocate process:
        * The internal array has a fixed size, if users want to add extra elements into the array, but this operation will cause the array to excess its initial capacity, then I have to initialise a new array with more capacities and then reallocate all the elements from the previous array into the new one.
     2. Casting from `Object[]` to `E[]`, I know from the point of type erasure that all unbound paramaterised type will be cast into `Object`. When I cast `E[]` to `Object[]`, IDE reported a warning `Type safety: Unchecked cast from Object[] to E[]`. 
         * Is it because if `E[]` is a bounded paramaterised type (i.e., E extends classA) then only classA and its subtypes are allowed, thus `Object[]` cannot be casted into `E[]`(i.e., `Object[]` is a superclass of classA)? 
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+
+```
+
+## Q47 Write a Java program that calculates the average (mean) for a list of integers. Provide three implmentations: 1) using a regular for-loop; 2) using a for-each loop; 3) using an iterator. What are the pros and cons of each?
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+
+```

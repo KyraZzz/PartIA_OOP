@@ -1,4 +1,4 @@
-package Question45;
+package Question46;
 
 public class Main {
     public static void main(String[] args) {
