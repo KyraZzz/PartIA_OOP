@@ -35,7 +35,9 @@
 ```
 
 ## Q46. Java provides the List interface and an abstract class that implements much of it called AbstractList. The intention is that you can extend AbstractList and just fill in a few implementation details to have a Collections-compatible structure. Write a new class CollectionArrayList that implements a mutable Collections-compatible Generics array-based list using this technique. Comment on any difficulties you encounter.
+
 [Question 46 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question45)
+
 * Difficulties I have encountered:
   
     1. Resize and reallocate process:
@@ -58,6 +60,49 @@
 
 ## Q47 Write a Java program that calculates the average (mean) for a list of integers. Provide three implmentations: 1) using a regular for-loop; 2) using a for-each loop; 3) using an iterator. What are the pros and cons of each?
 
+[Question 47 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question47)
+
+1. Using a regular for-loop:
+   
+    * Pros:
+        
+        1. Basic and relatively easy to understand. We can access to the index of the element.
+        2. We can iterative the collection in any order we want, we can also iterate part of the collection using bounds and steps.
+
+
+    * Cons:    
+  
+        1. We can not delete elements in the collection while iterating through it.
+        2. We use index to iterate the elements inside a collection, the `for-loop` can not be directly used if the collection is not index based, we have to apply some logic.
+
+
+2. Using a for-each loop:
+   
+    * Pros:   
+  
+        1. It normally has the shortest syntax, improve readability and become more clear.
+        2. Level up the abstraction for programmers as they do not need to work on the implementation details of iteration (either using an index or an iterator).
+        3. We do not need to use indexes, so some data structures which are not index-based can be iterated through.
+
+    * Cons: 
+     
+        1. We can not delete elements in the collection while iterating through it.
+        2. We can not access to the index of the elements.
+
+  
+3. Using an iterator:
+   
+    * Pros:
+        
+        1. We can delete elements in the collection while iterating through it.
+        2. It is an abstraction, it allows user to process every element of a container while isolating the user from the internal structure of the container.
+        3. Do not need to use index to access elements, so data structures which are not index-based can be iterated through.
+
+    * Cons: 
+
+        1. Only collections which implemented the iterable interface will have a built-in iterator, programmers need to write an iterator for their customised data structures.
+        2. We can not access to the index of the element.
+
 ``` java
 // Comments:
 
@@ -70,3 +115,69 @@
 
 
 ```
+
+## Q48. Explain why the following code excerpts behave differently when compiled and run (may need some research):
+
+``` java
+// Question 48
+String s1 = new String("Hi");
+String s2 = new String("Hi");
+System.out.println( (s1==s2) );
+String s3 = "Hi";
+String s4 = "Hi";
+System.out.println( (s3==s4) );
+
+// results are as follows:
+// false
+// true
+```
+
+1. `s1` and `s2` are references which points to a chunk of memory that store the actural data. Hence, `s1==s2` is a reference equality test, it tests whether the memory addresses of the data each reference points to are the same. Since we have constructed the two strings independently using `new`, the twp strings are two different instances of the `String` class, thus they are stored in different memory locations.
+2. Strings are immutable and we have a `String Constant Pool` in Java which is a separate place in heap memory where the values of all the strings which are defined in the program are stored. It aims at reducing memory usage and encourage reuse of the existing instances in memory. So a String declared using `""(double quotes)` which has the same value as one of the existing one will points to the same memory address that stores the data.
+3. Hence `s3` and `s4` points to the same immutable string value on the heap memory, they have the same memory address. A reference equality test shows they are indeed the same (i.e, true).
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+
+```
+
+## Q49. Complete part 6 of the ‘Classic collections’ task on Chime
+
+1. Change the generic parameter of `LinkList` class to add the constraint that the object in the list must be Comparable.
+   
+   ```java
+    public class LinkList<T> implements OopList, Comparable<T>{
+        ...
+    }
+   ```
+
+2. Why is it safe not to include this constraint in `OopList`
+    * Because if we have included this constraint in `OopList`, then all the classes which implements the `OopList` interface needs to give implementation details for the `compareTo(Object obj)` method.
+    * Some classes do not need to compare two instances and sometimes it does not make sense to compare two instance for a class.
+
+3. 
+
+``` java
+// Comments:
+// Todo
+
+
+
+
+
+
+
+
+```
+
+## Q50.  Write an immutable class that represents a 3D point (x,y,z). Give it a natural order such that values are sorted in ascending order by z, then y, then x
+
+[Question 50 on Github]()
