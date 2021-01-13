@@ -196,7 +196,7 @@ System.out.println( (s3==s4) );
 
 ## Q51. Write a Java class that can store a series of student names and their corresponding marks (percentages) for the year. Your class should use at least one Map and should be able to output a List of all students (sorted alphabetically); a List containing the names of the top P% of the year as well; and the median mark.
 
-[Question 51 on Github]()
+[Question 51 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question51)
 
 ``` java
 // Comments:
@@ -212,6 +212,8 @@ System.out.println( (s3==s4) );
 
 ## Q52. The user of the class Car below wishes to maintain a collection of Car objects such that they can be iterated over in some specific order.
 
+[Question 52 on Github]()
+
 ``` java
 public class Car {
 private String manufacturer;
@@ -220,8 +222,36 @@ private int age;
 
 ```
 * (a) Show how to keep the collection sorted alphabetically by the manufacturer without writing a Comparator.
-  * 
+  * If we are not allowed to write a comparator, we can implement the comparable interface for the collection framework. This requires us to implement the `compareTo` function. Since the variable `manufacturer` is a string type, we can invoke the `compareTo` method on `String` class to compare the two string values
+  ``` java
+    @Override
+    public int compareTo(Car o) {
+        return this.manufacturer.compareTo(o.manufacturer);
+    }
+
+    Car[] arr = { car1, car2, car3, car4 };
+    ArrayList<Car> carList = new ArrayList<>(Arrays.asList(arr));
+
+    // Main.java
+    import java.util.Collections;
+    // Test 1:
+    Collections.sort(carList);
+    System.out.println(carList); 
+    // [(a, 3), (b, 1), (e, 7), (e, 0)]
+
+  ```
 * (b) Using a Comparator, show how to keep the collection sorted by {manufacturer, age}. i.e. sort first by manufacturer, and sub-sort by age.
+
+    * The `sort` method requires an customised comparator. We chaining comparators to compare multiple fields, first by manufacturer, then by age.
+    ``` java
+    // Main.java
+    import java.util.Comparator;
+    ...
+    // Test 2:
+    carList.sort(Comparator.comparing(Car::getManufacturer).thenComparing(Car::getAge));
+    System.out.println(carList); 
+    // [(a, 3), (b, 1), (e, 0), (e, 7)]
+    ```
 ``` java
 // Comments:
 
