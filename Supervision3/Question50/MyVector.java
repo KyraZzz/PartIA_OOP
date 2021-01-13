@@ -26,7 +26,7 @@ public class MyVector implements Comparable<MyVector> {
 
     @Override
     public int compareTo(MyVector o) {
-        return Comparator.comparing(MyVector::getX).thenComparing(MyVector::getY).thenComparing(MyVector::getZ)
+        return Comparator.comparing(MyVector::getZ).thenComparing(MyVector::getY).thenComparing(MyVector::getX)
                 .compare(this, o);
     }
 

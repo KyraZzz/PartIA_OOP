@@ -198,6 +198,20 @@ System.out.println( (s3==s4) );
 
 [Question 51 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question51)
 
+* I implemented the Student class with Comparator interface and implemented the method to compare two doubles.
+* I also construct a shared comparator to sort the array in a decending order according to the percentage.
+
+``` java
+Comparator<String> SortByPercentUp = (s1, s2) -> compare(map.get(s1), map.get(s2));
+
+...
+@Override
+public int compare(Double double1, Double double2) {
+    return double2.compareTo(double1);
+}
+
+```
+
 ``` java
 // Comments:
 
@@ -212,7 +226,7 @@ System.out.println( (s3==s4) );
 
 ## Q52. The user of the class Car below wishes to maintain a collection of Car objects such that they can be iterated over in some specific order.
 
-[Question 52 on Github]()
+[Question 52 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question52)
 
 ``` java
 public class Car {
@@ -263,3 +277,6 @@ private int age;
 
 
 ```
+
+## Q53.  Write a Java program that reads in a text file that contains two integers on each line, separated by a comma (i.e. two columns in a comma-separated file). Your program should print out the same set of numbers, but sorted by the first column and subsorted by the second.
+[Code on Github]()

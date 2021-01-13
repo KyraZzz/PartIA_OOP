@@ -7,24 +7,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class Student {
+public class Student implements Comparator<Double> {
     Map<String, Double> map = new TreeMap<>();
 
     Student() {
 
     }
 
-    class SortByPercentUp implements Comparator<String> {
-        @Override
-        public int compare(String o1, String o2) {
-            if (map.get(o1) < map.get(o2)) {
-                return 1;
-            } else if (map.get(o1) > map.get(o2)) {
-                return -1;
-            }
-            return 0;
-        }
-    }
+    Comparator<String> SortByPercentUp = (s1, s2) -> compare(map.get(s1), map.get(s2));
 
     public void addPair(String name, double percent) {
         map.put(name, percent);
@@ -40,8 +30,7 @@ public class Student {
     }
 
     public List<String> topPName(int P) {
-        Comparator<String> cmp = new SortByPercentUp();
-        Map<String, Double> sortByValue = new TreeMap<>(cmp);
+        Map<String, Double> sortByValue = new TreeMap<>(SortByPercentUp);
         sortByValue.putAll(map);
         List<String> res = new ArrayList<String>();
         Set<String> s = sortByValue.keySet();
@@ -62,8 +51,7 @@ public class Student {
         double res = 0;
         int index = 0;
         int count1, count2 = 0;
-        Comparator<String> cmp = new SortByPercentUp();
-        Map<String, Double> sortByValue = new TreeMap<>(cmp);
+        Map<String, Double> sortByValue = new TreeMap<>(SortByPercentUp);
         sortByValue.putAll(map);
         Set<String> s = sortByValue.keySet();
         if (s.size() % 2 == 0) {
@@ -88,6 +76,11 @@ public class Student {
     @Override
     public String toString() {
         return map.toString();
+    }
+
+    @Override
+    public int compare(Double double1, Double double2) {
+        return double2.compareTo(double1);
     }
 
 }
