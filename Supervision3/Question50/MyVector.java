@@ -30,4 +30,10 @@ public class MyVector implements Comparable<MyVector> {
                 .compare(this, o);
     }
 
+    @Override
+    public String toString() {
+        String res = "(" + getX() + ", " + getY() + ", " + getZ() + ")";
+        return res;
+    }
+
 }
