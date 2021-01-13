@@ -279,4 +279,59 @@ private int age;
 ```
 
 ## Q53.  Write a Java program that reads in a text file that contains two integers on each line, separated by a comma (i.e. two columns in a comma-separated file). Your program should print out the same set of numbers, but sorted by the first column and subsorted by the second.
-[Code on Github]()
+[Code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question53)
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```
+
+## Q54. The following code captures errors using return values. Rewrite it to use exceptions.
+
+``` java
+public class RetValTest {
+public static String sEmail = "";
+public static int extractCamEmail(String sentence) {
+if (sentence==null || sentence.length()==0)
+return -1; // Error - sentence empty
+String tokens[] = sentence.split(" "); // split into tokens
+for (int i=0; i< tokens.length; i++) {
+if (tokens[i].endsWith("@cam.ac.uk")) {
+sEmail=tokens[i];
+return 0; // success
+}
+}
+return -2; // Error - no cam email found
+}
+public static void main(String[] args) {
+int ret=RetValTest.extractCamEmail("My email is rkh23@cam.ac.uk");
+if (ret==0) System.out.println("Success: "+RetValTest.sEmail);
+else if (ret==-1) System.out.println("Supplied string empty");
+else System.out.println("No @cam address in supplied string");
+}
+
+
+```
+
+[]()
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```
+
+## Q55. 
