@@ -180,4 +180,56 @@ System.out.println( (s3==s4) );
 
 ## Q50.  Write an immutable class that represents a 3D point (x,y,z). Give it a natural order such that values are sorted in ascending order by z, then y, then x
 
-[Question 50 on Github]()
+[Question 50 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question50)
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```
+
+## Q51. Write a Java class that can store a series of student names and their corresponding marks (percentages) for the year. Your class should use at least one Map and should be able to output a List of all students (sorted alphabetically); a List containing the names of the top P% of the year as well; and the median mark.
+
+[Question 51 on Github]()
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```
+
+## Q52. The user of the class Car below wishes to maintain a collection of Car objects such that they can be iterated over in some specific order.
+
+``` java
+public class Car {
+private String manufacturer;
+private int age;
+}
+
+```
+* (a) Show how to keep the collection sorted alphabetically by the manufacturer without writing a Comparator.
+  * 
+* (b) Using a Comparator, show how to keep the collection sorted by {manufacturer, age}. i.e. sort first by manufacturer, and sub-sort by age.
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```
