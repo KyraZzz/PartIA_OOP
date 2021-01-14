@@ -320,7 +320,47 @@ else System.out.println("No @cam address in supplied string");
 
 ```
 
-[]()
+[Question 54 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question54)
+
+Since the code is also relatively short, I also included it here for reference.
+
+``` java 
+package Question54;
+
+import java.util.NoSuchElementException;
+
+public class RetValTest {
+    public static String extractCamEmail(String sentence) {
+        String sEmail = "";
+        try {
+            if (sentence == null || sentence.length() == 0)
+                throw new Exception("Supplied string empty"); // Error - sentence empty
+            String tokens[] = sentence.split(" "); // split into tokens
+            for (int i = 0; i < tokens.length; i++) {
+                if (tokens[i].endsWith("@cam.ac.uk")) {
+                    sEmail = tokens[i];// success
+                }
+            }
+            if (sEmail == "") {
+                throw new NoSuchElementException("Error - no cam email found"); // Error - no cam email found
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return sEmail;
+    }
+
+    public static void main(String[] args) {
+        String res = RetValTest.extractCamEmail("My email is rkh23@cam.ac.uk");
+        System.out.println(res); // "rkh23@cam.ac.uk"
+        res = RetValTest.extractCamEmail(""); // throw "java.lang.Exception: Supplied string empty"
+        System.out.println(res); // ""
+        res = RetValTest.extractCamEmail("aaa"); // java.util.NoSuchElementException: Error - no cam email found
+        System.out.println(res); // ""
+    }
+}
+
+```
 
 ``` java
 // Comments:
@@ -334,4 +374,18 @@ else System.out.println("No @cam address in supplied string");
 
 ```
 
-## Q55. 
+## Q55. Write a Java function that computes the square root of a double number using the Newton-Raphson method. Your function should make appropriate use of exceptions
+
+[Question 55 on Github]()
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+
+```

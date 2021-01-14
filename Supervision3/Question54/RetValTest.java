@@ -28,5 +28,7 @@ public class RetValTest {
         System.out.println(res);
         res = RetValTest.extractCamEmail("");
         System.out.println(res);
+        res = RetValTest.extractCamEmail("aaa");
+        System.out.println(res);
     }
 }
