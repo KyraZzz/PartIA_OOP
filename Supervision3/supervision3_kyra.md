@@ -376,7 +376,7 @@ public class RetValTest {
 
 ## Q55. Write a Java function that computes the square root of a double number using the Newton-Raphson method. Your function should make appropriate use of exceptions
 
-[Question 55 on Github]()
+[Question 55 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question55)
 
 ``` java
 // Comments:
@@ -387,5 +387,29 @@ public class RetValTest {
 
 
 
-
 ```
+
+## Q56. Comment on the following implementation of pow, which computes the power of a number:
+
+``` java
+public class Answer extends Exception {
+private int mAns;
+public Answer(int a) { mAns=a; }
+public int getAns() {return mAns;}
+}
+public class ExceptionTest {
+private void powaux(int x, int v, int n) throws Answer {
+if (n==0) throw new Answer(v);
+else powaux(x,v*x,n-1);
+}
+public int pow(int x, int n) {
+try { powaux(x,1,n); }
+catch(Answer a) { return a.getAns(); }
+return 0;
+}
+}
+```
+
+1. Not an approapriate use of Exceptions because Exceptions should be used for exceptional circumstances and Exception handler should only be used to handle errors, not like a `Go-to` statement.
+2. This piece of code is hard to read and unclear because of the exceptions it used to get the correct answer.
+3. We can simplify this piece of code by removing the exceptions and property handle cases. (i.e., [Code on Github]())
