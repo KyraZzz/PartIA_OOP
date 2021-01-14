@@ -412,4 +412,28 @@ return 0;
 
 1. Not an approapriate use of Exceptions because Exceptions should be used for exceptional circumstances and Exception handler should only be used to handle errors, not like a `Go-to` statement.
 2. This piece of code is hard to read and unclear because of the exceptions it used to get the correct answer.
-3. We can simplify this piece of code by removing the exceptions and property handle cases. (i.e., [Code on Github]())
+3. We can simplify this piece of code by removing the exceptions and property handle cases. (i.e., [Code on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question56))
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+```
+
+## Q57. Give an example of how covariant arrays in Java can create runtime errors.
+
+
+``` java
+public class Covariant {
+    public static void main(String[] args) {
+        Integer[] arrI = { 1, 2, 4, 9 };
+        Number[] arrN = arrI;
+        arrN[0] = 2.5f; // cause runtime error
+    }
+}
+```
