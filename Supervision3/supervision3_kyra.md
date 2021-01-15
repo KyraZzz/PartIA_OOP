@@ -511,7 +511,7 @@ public class Covariant {
 8. The `File` book is first implemented concretly using the `FileInputStream`, then wrapped with `GZIPInputStream`, adapted with `InputStreamReader`, then wrapped with `BufferedReader`.
 9. At run-time, while the concrete object called `readLine()` method, the adaptor called the `read()` method in the `GZIPInputStream` class before executing its self-implementation, `GZIPInputStream` class called the `read()` method in the `FileInputStream` class before executing its self-implementation. The concrete component will be treated as different objects at each stage.
 10. So the file will be read as bytes, then compressed, then convert into characters, then read line by line.
-11. I do have a question about how the adapator `InputStreamReader` class can invoke `read()` method, because ``BufferedReader` object calls the `readLine()` method and there is no `readLine()` method in the `InputStreamReader` class...
+11. I do have a question about how the adapator `InputStreamReader` class can invoke `read()` method, because `BufferedReader` object calls the `readLine()` method and there is no `readLine()` method in the `InputStreamReader` class...
 
 ``` java
 public static void main(String[] args) throws IOException {
@@ -704,7 +704,7 @@ public class Composite extends Shape {
 
 ## (d) Which design pattern would you use if you wanted to extend the program to draw frames around some of the shapes? Show how this would work.
 
-[Question (d) on Github]()
+[Question (d) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question64)
 
 1. I would use a Decorator patter to extend the behaviours because we want to add some extra behaviour on top of the existing ones at run-time without breaking the code.
 2. First create a `Decorator` class which inherits the `Shape` abstract class.
@@ -794,4 +794,6 @@ Draw a round frame.
 
 ## 66. Give one question that you would like to discuss in the supervision.
 
-1. Question in 
+1. Problem related with question 60:
+   > I do have a question about how the adapator `InputStreamReader` class can invoke `read()` method, because `BufferedReader` object calls the `readLine()` method and there is no `readLine()` method in the `InputStreamReader` class...
+2. 
