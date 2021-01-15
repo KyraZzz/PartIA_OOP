@@ -597,7 +597,8 @@ public static void main(String[] args) throws IOException {
 
 ## Q63. Explain the difference between the State pattern and the Strategy pattern
 
-
+1. State pattern is an extension of the strategy pattern as both patterns are based on composition. They change the behaviour of the context by delegating some work to helper objects.
+2. In the state pattern, the particular states may be aware of each other and initiate transitions from one state to another, whereas in the strategy pattern, the strategies do not know each other.
 
 
 ``` java
@@ -610,3 +611,96 @@ public static void main(String[] args) throws IOException {
 
 
 ```
+
+## Q64. A drawing program has an abstract Shape class. Each Shape object supports a draw() method that draws the relevant shape on the screen (as per the example in lectures). There are a series of concrete subclasses of Shape, including Circle and Rectangle. The drawing program keeps a list of all shapes in a List<Shape> object.
+
+### (a) Should draw() be an abstract method?
+* Yes. Although the abstract class `Shape` can have both abstract and concrete methods, the `Shape` class can not construct an instance. There is no point to draw a general shape, we always want to draw some particular shape type (i.e., circles, points), so it is better to leave the method abstract and let the subclasses of `Shape` to implement it.
+
+
+## (b) Write Java code for the function in the main application that draws all the shapes on each screen refresh.
+
+[Question (b) and (c) on Github]()
+
+```java
+// Question (b)
+public static void main(String[] args) throws InterruptedException {
+        Shape circle1 = new Circle();
+        Shape rect1 = new Rectangle();
+        Shape[] arr = { circle1, rect1 };
+        ArrayList<Shape> shapeList = new ArrayList<>(Arrays.asList(arr));
+
+        System.out.println("For question B:");
+
+        int cnt = 0;
+        while (cnt < 5) {
+            System.out.println("Time:" + cnt);
+            for (Shape item : shapeList) {
+                item.draw();
+            }
+            TimeUnit.SECONDS.sleep(1);
+            cnt++;
+        }
+}
+```
+
+## (c) Show how to use the Composite pattern to allow sets of shapes to be grouped together and treated as a single entity.
+
+[Question (b) and (c) on Github]()
+
+```java
+// Main.java
+
+public static void main(String[] args) throws InterruptedException {
+    ...
+// Question (c)
+        Composite set1 = new Composite(shapeList);
+
+        Shape circle2 = new Circle();
+        Shape circle3 = new Rectangle();
+        Composite set2 = new Composite(circle2, circle3);
+
+        Composite set3 = new Composite();
+        set3.addComponent(set1);
+        set3.addComponent(set2);
+
+        System.out.println("For question C:");
+        set3.draw();
+}
+
+// Composite.java
+public class Composite extends Shape {
+    private ArrayList<Shape> component;
+
+    Composite(ArrayList<? extends Shape> component) {
+        this.component = (ArrayList<Shape>) component;
+    }
+
+    Composite(Shape... component) {
+        this.component = new ArrayList<Shape>(Arrays.asList(component));
+    }
+
+    Composite() {
+        this.component = new ArrayList<Shape>();
+    }
+
+    public void addComponent(Shape component) {
+        this.component.add(component);
+    }
+
+    public void removeComponent(Shape component) {
+        this.component.remove(component);
+    }
+
+    @Override
+    public void draw() {
+        for (Shape item : component) {
+            item.draw();
+        }
+    }
+
+}
+
+
+(d) Which design pattern would you use if you wanted to extend the program to draw frames around
+some of the shapes? Show how this would work.
