@@ -427,7 +427,7 @@ return 0;
 
 ## Q57. Give an example of how covariant arrays in Java can create runtime errors.
 
-
+[Question 57 on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question57)
 ``` java
 public class Covariant {
     public static void main(String[] args) {
@@ -436,4 +436,177 @@ public class Covariant {
         arrN[0] = 2.5f; // cause runtime error
     }
 }
+```
+
+1. Arrays are covariant which means a function accept type A can also accept its subtype, according to the substitution principle, anywhere we want a type A can be replaced with its subtype.
+2. In this case `Integer[]` is a subtype of `Number[]`, we can use a reference of type `Number[]`(i.e., `arrN`) to point to an integer array `arrI`. 
+3. We manipulate the number array `arrN` by change one of its element to a float, which is compile-safe as float is a subtype of `Number`.
+4. At runtime, since `arrI` points to the same integer array and we change one of its element to a float, that cased a runtime error.
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+```
+
+## Q58. Compare Inner-classes, method-local classes, anonymous inner classes and lambda functions. What general advice would you give someone who is trying to choose which one to use?
+
+1. Inner-classes and  method-local classes can be used to create multiple instances; The anonymous inner class can only create one instance; Lambda functions are functions, they are not used for instantiation.
+2. Static inner class can not access instance variables in the outer class, but can access static variables in the outer class; Instance inner class can access both instance or static variables of the outer class; Method-local class is never a static class because it can access the local variables of the method and static and instance variables in the class which contains the method.
+3. The scope of the method-local classes is the function that includes it. The scope of the inner class is the outer class. 
+4. Lambda expression is used to implement functional interfaces which contains only one function. All other three classes can implement interfaces as well as inherits from other classes.
+   
+* General advice:
+  
+  * Inner class:
+    * Need to create more than one instance of a class
+    * Need to access its constructor or introduce additional methods.
+    * Use static inner class if not required to access instance variables from the outer class.
+    * Use instance inner class if required to access instance variables from the outer class.
+  * Method local class:
+    * A class that only need to be used in some particular method and nowhere else.
+  * Annoymous class:
+    * Need to create only one instance but with additional methods or fields.
+  * Lambda expression: 
+    * Need a certain instance of a functional interface.
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+```
+
+## Q59. Complete the Alice in Wonderland task on Chime
+
+``` java
+// Comments:
+// TODO
+
+
+
+
+
+
+```
+
+## Q60. Explain how Java uses the Decorator pattern with Reader.
+
+1. The Decorator pattern aims at wrapping concrete objects with different concrete decorator and execute different behaviour at run-time. 
+2. `BufferedReader` is a concrete decorator; `InputStreamReader` is an adaptor between `BufferedReader` and `GZIPInputStream`; `GZIPInputStream` is a concrete decorator; ``FileInputStream` is the is the concrete component.
+3. `BufferedReader` class has a field of type `Reader`, so it takes a `Reader` type into its constructor. 
+4. `BufferedReader` class and `InputStreamReader` class both inherits from `Reader` class, so an `inputStreamReader` object can be passed into the `BufferedReader` constructor.
+5. `InputStreamReader` class follows an adaptor pattern where it acts as a bridge between byte streams and character streams so that the character streams can be processed later by the `readLine()` method in the `BufferedReader` class.
+6. `InputStreamReader` class takes an `InputStream` type Object in its constructor. While both `GZIPInputStream` class and `FileInputStream` class inherits from `InputStream` class, so by substitution principle, an `GZIPInputStream` object can be passed to the constructor of `InputStreamReader` class.
+7. `GZIPInputStream` class takes `inputStream` as its parameter in the constructor, so an object with type `FileInputStream` can be passed into it.
+8. The `File` book is first implemented concretly using the `FileInputStream`, then wrapped with `GZIPInputStream`, adapted with `InputStreamReader`, then wrapped with `BufferedReader`.
+9. At run-time, while the concrete object called `readLine()` method, the adaptor called the `read()` method in the `GZIPInputStream` class before executing its self-implementation, `GZIPInputStream` class called the `read()` method in the `FileInputStream` class before executing its self-implementation. The concrete component will be treated as different objects at each stage.
+10. So the file will be read as bytes, then compressed, then convert into characters, then read line by line.
+11. I do have a question about how the adapator `InputStreamReader` class can invoke `read()` method, because ``BufferedReader` object calls the `readLine()` method and there is no `readLine()` method in the `InputStreamReader` class...
+
+``` java
+public static void main(String[] args) throws IOException {
+    File book = downloadBook();
+
+    // Demonstrate decorator and adaptor pattern
+    try (BufferedReader is =
+        new BufferedReader(  // decorator
+            new InputStreamReader( // adapter
+                new GZIPInputStream( // decorator
+                        new FileInputStream(book) // concrete implementation
+                ), StandardCharsets.UTF_8))) {
+      String line;
+      while ((line = is.readLine()) != null) {
+        System.out.println(line);
+      }
+    }
+  }
+
+```
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+```
+
+## Q61. In lectures the examples for the State pattern looked at implementing a Fan with different speeds. Compare the different approaches taken. What were the advantages and disadvantages with them? In what sense is the final solution demonstrating the open-closed principle?
+
+1. `FanSpeedWithInts`:
+   1. Advantage:
+      1. Only one class is included and we can get an overview of the number of states involve as well as the relationship between states.
+   2. Disadvantage:
+      1. If we want to add more fan speeds, we have to modify each methods linked with states of fan speed (i.e., update & click)
+      2. We have to assign each state both a name and an integer, but we never used the integer at all in all the methods.
+2. `FanSpeedWithEnum`:
+   1. Advantage:
+      1. Getting rid of the integers so only represent each state with a enumeration type.
+      2. Similarly, we can get an overview of the states involved in the finite state machine and how they are linked with each other.
+   2. Disadvantage:
+      1. Bulky conditional statements if we have multiple states included
+      2. Adding new states involves changing each related methods, which is quite cumbersome and may cause inconsistency in the codes if we forget to modify one of the methods.
+3. `FanSpeedWithStatePattern`:
+   1. Advantage:    
+      1. Abbey the open-closed principle. The open-closed principle states that class should open for extension but closed for modification.
+         1. If we want to add more states, there is no need to modify the original source code
+         2. we can simply add another class which implements the shared interface and override the common methods to provide a different method implementation.
+      2. The method in the source code will be very light because the actuaal object will be determined at run time.
+      3. Single responsibility principle: since each state will be stored in a separate file, each is responsible for a specific task.
+      4. It gets rid of the bulky state machine conditions in the main method.
+   2. Disadvantage:
+      1. Each new state requires a separate class, so more files are included.
+      2. Apply the pattern can be overkill if a state machine has only a few states or rarely changes.
+
+``` java
+// Comments:
+
+
+
+
+
+
+
+```
+
+## Q62. Complete the Game of Life task on Chime
+
+``` java
+// Comments:
+// TODO
+
+
+
+
+
+
+```
+
+## Q63. Explain the difference between the State pattern and the Strategy pattern
+
+
+
+
+``` java
+// Comments:
+
+
+
+
+
+
+
 ```
