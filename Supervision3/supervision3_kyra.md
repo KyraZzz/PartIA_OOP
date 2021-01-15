@@ -620,7 +620,7 @@ public static void main(String[] args) throws IOException {
 
 ## (b) Write Java code for the function in the main application that draws all the shapes on each screen refresh.
 
-[Question (b) and (c) on Github]()
+[Question (b) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question64)
 
 ```java
 // Question (b)
@@ -646,7 +646,7 @@ public static void main(String[] args) throws InterruptedException {
 
 ## (c) Show how to use the Composite pattern to allow sets of shapes to be grouped together and treated as a single entity.
 
-[Question (b) and (c) on Github]()
+[Question (c) on Github](https://github.com/KyraZzz/PartIA_OOP/tree/master/Supervision3/Question64)
 
 ```java
 // Main.java
@@ -700,7 +700,98 @@ public class Composite extends Shape {
     }
 
 }
+``` 
+
+## (d) Which design pattern would you use if you wanted to extend the program to draw frames around some of the shapes? Show how this would work.
+
+[Question (d) on Github]()
+
+1. I would use a Decorator patter to extend the behaviours because we want to add some extra behaviour on top of the existing ones at run-time without breaking the code.
+2. First create a `Decorator` class which inherits the `Shape` abstract class.
+``` java
+    public class Decorator extends Shape {
+
+    protected Shape wrapee;
+
+    Decorator(Shape wrapee) {
+        this.wrapee = wrapee;
+    }
+
+    @Override
+    public void draw() {
+        wrapee.draw();
+    }
+
+}
+```
+
+3. Then implement the various decorators, i.e., `Frame` class and `RoundFrame` class.
+``` java
+public class Frame extends Decorator {
+
+    Frame(Shape wrapee) {
+        super(wrapee);
+    }
+
+    @Override
+    public void draw() {
+        wrapee.draw();
+        System.out.println("A frame");
+    }
+
+}
+
+public class RoundFrame extends Decorator {
+
+    RoundFrame(Shape wrapee) {
+        super(wrapee);
+    }
+
+    @Override
+    public void draw() {
+        wrapee.draw();
+        System.out.println("Draw a round frame.");
+    }
+
+}
+```
+4. Wrapped the concrete objects into the concrete decorators.
+``` java
+// Question (d)
+    public static void main(String[] args){
+        System.out.println("For question D:");
+        Shape shape1 = new Frame(new Circle());
+        Shape shape2 = new RoundFrame(new Rectangle());
+        shape1.draw();
+        shape2.draw();
+    }
+```
+5. Thus the objects can be treated as concrete decorators at runtime and execute the approapriate behaviour.
+``` java
+For question D:
+Draw a circle.
+A frame
+Draw a rectangle.
+Draw a round frame.
+```
+
+``` java
+// Comments:
 
 
-(d) Which design pattern would you use if you wanted to extend the program to draw frames around
-some of the shapes? Show how this would work.
+
+
+
+
+
+```
+
+
+## 65. What would you say are the three most important concepts from the content for this supervision?
+
+1. 
+
+
+## 66. Give one question that you would like to discuss in the supervision.
+
+1. Question in 

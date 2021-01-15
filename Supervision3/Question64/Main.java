@@ -38,5 +38,12 @@ public class Main {
 
         System.out.println("For question C:");
         set3.draw();
+
+        // Question (d)
+        System.out.println("For question D:");
+        Shape shape1 = new Frame(new Circle());
+        Shape shape2 = new RoundFrame(new Rectangle());
+        shape1.draw();
+        shape2.draw();
     }
 }
