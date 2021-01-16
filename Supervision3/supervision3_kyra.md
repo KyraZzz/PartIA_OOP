@@ -151,10 +151,12 @@ System.out.println( (s3==s4) );
 
 ## Q49. Complete part 6 of the ‘Classic collections’ task on Chime
 
+[Question 49 on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/classic_collections_lists_and_queues/code/2be3fd2cad34be19980c8a027583cee82b3367ff)
+
 1. Change the generic parameter of `LinkList` class to add the constraint that the object in the list must be Comparable.
    
    ```java
-    public class LinkList<T> implements OopList, Comparable<T>{
+    public class LinkList<T extends Comparable<T>> implements OopList{
         ...
     }
    ```
@@ -163,11 +165,43 @@ System.out.println( (s3==s4) );
     * Because if we have included this constraint in `OopList`, then all the classes which implements the `OopList` interface needs to give implementation details for the `compareTo(Object obj)` method.
     * Some classes do not need to compare two instances and sometimes it does not make sense to compare two instance for a class.
 
-3. 
+3. `reorderHighLow` function:
+``` java
+public void reorderLowHigh(){
+    if (this.length()==0) {
+      return;
+    }
+    Node<T> current = this.head;
+    Node<T> previous = null;
+    int flag = 1;
+    while (current!=null && current.next!=null){
+      if (current.value.compareTo(current.next.value)*flag > 0){
+        Node<T> temp = current.next;
+        current.next = current.next.next;
+        temp.next = current;
+        if (previous==null) {
+          previous = temp;
+          previous.next = current;
+          this.head = previous;
+        }
+        else {
+          previous.next = temp;
+          previous = temp;
+        }
+      }
+      else {
+        previous = current;
+        current = current.next;
+      }
+      flag = -flag;
+    }
+  }
+
+```
 
 ``` java
 // Comments:
-// Todo
+
 
 
 
@@ -487,10 +521,13 @@ public class Covariant {
 ```
 
 ## Q59. Complete the Alice in Wonderland task on Chime
+[Question 59(Task 1) on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/alice_in_wonderland/code/94110f4c9ad747a8489735d3ef2ac6fd49bf7afa)
+
+[Question 59(Task 2) on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/alice_in_wonderland/code/8369b4768167258e9827d6712651d017ecca9262)
 
 ``` java
 // Comments:
-// TODO
+
 
 
 
@@ -584,9 +621,18 @@ public static void main(String[] args) throws IOException {
 
 ## Q62. Complete the Game of Life task on Chime
 
+[Task 1 Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/game_of_life/code/91c34fdaebf9c5fe487a0b1171c5635dd33456a3)
+
+
+[Task 2 Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/game_of_life/code/61f942e165b06d6de0875e7ebf67b644f9aafbab)
+
+[Task 3 Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/game_of_life/code/b07d9dd7e92afb054a256e9fa73bd1de0ef3bc6a)
+
+[Task 4 Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/game_of_life/code/2555934e580f7899c90016a97ec2d384beedd758)
+
+[Task 5 Code on Chime](https://chime.cl.cam.ac.uk/page/repos/yz709/game_of_life)
 ``` java
 // Comments:
-// TODO
 
 
 
@@ -789,11 +835,13 @@ Draw a round frame.
 
 ## 65. What would you say are the three most important concepts from the content for this supervision?
 
-1. 
+1. The difference between various collections in the collection frame. Because we will utilise them a lot and it is crucial to understand the inheriteance hierachy and their properties.
+2. The new features introduced in Java 8, particularly Lambda expression, streams and method reference.
+3. The structure of different design patterns and what problems do each of them solve.
 
 
 ## 66. Give one question that you would like to discuss in the supervision.
 
 1. Problem related with question 60:
    > I do have a question about how the adapator `InputStreamReader` class can invoke `read()` method, because `BufferedReader` object calls the `readLine()` method and there is no `readLine()` method in the `InputStreamReader` class...
-2. 
+2. The difference between default method in interfaces and concrete methods in abstract class. Is it because default method in interface can not have any interactions with variables since all variables in interface are final?
